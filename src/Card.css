@@ -1,0 +1,21 @@
+.card {
+    color: rgba(23, 133, 36, 1);
+    background-color: rgba(23, 133, 36, 0.3);
+    border: 2px solid rgba(23, 133, 36, 1);
+    border-radius: 5px;
+    padding: 3rem 5rem;
+    font-size: 1.2rem;
+    margin: 3rem 1rem;
+}
+
+.card-blue {
+    color: rgba(13, 27, 219, 1);
+    background-color: rgba(13, 27, 219, 0.3);
+    border: 2px solid rgba(13, 27, 219, 1);
+}
+
+.card-red {
+    color: rgba(219, 13, 13, 1);
+    background-color: rgba(219, 13, 13, 0.3);
+    border: 2px solid rgba(219, 13, 13, 1);
+}
