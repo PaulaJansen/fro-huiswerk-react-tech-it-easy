@@ -1,5 +1,6 @@
 .card-wrapper {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
+    gap: 3rem;
 }

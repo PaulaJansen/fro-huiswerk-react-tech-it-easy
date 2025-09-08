@@ -1,18 +1,11 @@
-import './Card.css'
-import './helpers/calculateProductsSold.js'
+import './Card.css';
 
-function Card() {
+function Card({title, variant, helperFn, data}) {
     return (
         <>
-            <article className={"card"}>
-                <p>Aantal verkochte producten</p>
-                <p><calculateProductsSold /></p>
-            </article>
-            <article className={"card"}>
-                <p>Aantal ingekochte producten</p>
-            </article>
-            <article className={"card"}>
-                <p>Aantal te verkopen producten</p>
+            <article className={`card ${variant}`}>
+                <h3>{title}</h3>
+                <p>{helperFn && data ? helperFn(data) : ""}</p>
             </article>
         </>
     )

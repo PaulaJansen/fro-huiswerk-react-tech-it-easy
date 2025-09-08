@@ -1,21 +1,27 @@
 .card {
     color: rgba(23, 133, 36, 1);
-    background-color: rgba(23, 133, 36, 0.3);
+    background-color: rgba(23, 133, 36, 0.1);
     border: 2px solid rgba(23, 133, 36, 1);
     border-radius: 5px;
-    padding: 3rem 5rem;
-    font-size: 1.2rem;
-    margin: 3rem 1rem;
+    padding: 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.card-blue {
+.card p {
+    font-size: 1.7rem;
+}
+
+.card.blue {
     color: rgba(13, 27, 219, 1);
-    background-color: rgba(13, 27, 219, 0.3);
+    background-color: rgba(13, 27, 219, 0.1);
     border: 2px solid rgba(13, 27, 219, 1);
 }
 
-.card-red {
+.card.red {
     color: rgba(219, 13, 13, 1);
-    background-color: rgba(219, 13, 13, 0.3);
+    background-color: rgba(219, 13, 13, 0.1);
     border: 2px solid rgba(219, 13, 13, 1);
 }
