@@ -6,3 +6,19 @@
     padding: 2rem;
     width: 75%;
 }
+
+.product-image {
+    width: 30%;
+}
+
+.product {
+    font-size: 1.2rem;
+}
+
+.price {
+    font-size: 1.5rem;
+}
+
+.icon {
+    width: 2%;
+}

@@ -8,28 +8,45 @@ import createNameBestsellingTv from './helpers/createNameBestsellingTv.js';
 import createPriceBestsellingTv from './helpers/createPriceBestsellingTv.js';
 import createScreenSizesBestsellingTv from "./helpers/createScreenSizesBestsellingTv.js";
 import Highlight from "./Highlight.jsx";
-import ProductImage from "./ProductImage.jsx";
-import productImage from "./ProductImage.jsx";
+import Button from "./Button.jsx";
+import showOutcomeInConsole from "./constants/showOutcomeInConsole.js";
+
+
 
 function App() {
-  return (
-    <>
-      <h1>Tech it easy dashboard</h1>
-      <div>
-        <h2>Verkoopoverzicht</h2>
-        <section className={"card-wrapper"}>
-            <Card title="Aantal verkochte producten" helperFn={calculateProductsSold} data={bestSellingTv && inventory} />
-            <Card title="Aantal ingekochte producten" variant="blue" helperFn={calculateProductsPurchased} data={bestSellingTv && inventory} />
-            <Card title="Aantal te verkopen producten" variant="red" helperFn={calculateProductsToSell} data={bestSellingTv && inventory} />
-        </section>
-      </div>
-      <div>
-        <h2>Best verkochte tv</h2>
-        <Highlight image={productImage} url={bestSellingTv.sourceImg} alt={"product image"} helperFnProduct={createNameBestsellingTv} helperFnPrice={createPriceBestsellingTv} helperFnSizes={createScreenSizesBestsellingTv} data={bestSellingTv} />
-      </div>
-    </>
+    showOutcomeInConsole();
 
-  )
+    return (
+        <>
+            <h1>Tech it easy dashboard</h1>
+            <div>
+                <h2>Verkoopoverzicht</h2>
+                <section className={"card-wrapper"}>
+                    <Card title="Aantal verkochte producten" helperFn={calculateProductsSold}
+                          data={bestSellingTv && inventory}/>
+                    <Card title="Aantal ingekochte producten" variant="blue" helperFn={calculateProductsPurchased}
+                          data={bestSellingTv && inventory}/>
+                    <Card title="Aantal te verkopen producten" variant="red" helperFn={calculateProductsToSell}
+                          data={bestSellingTv && inventory}/>
+                </section>
+            </div>
+            <div>
+                <h2>Best verkochte tv</h2>
+                <Highlight url={bestSellingTv.sourceImg} alt={"product image"} helperFnProduct={createNameBestsellingTv}
+                           helperFnPrice={createPriceBestsellingTv} helperFnSizes={createScreenSizesBestsellingTv}
+                           data={bestSellingTv}/>
+            </div>
+            <div>
+                <h2>Alle tvs</h2>
+                <div className={"button-wrapper"}>
+                    <Button title={"Meest verkocht eerst"} />
+                    <Button title={"Goedkoopste eerst"} />
+                    <Button title={"Meest geschikt voor sport eerst"} />
+                </div>
+            </div>
+        </>
+
+    )
 }
 
 export default App

@@ -1,14 +1,22 @@
 import './Highlight.css';
 import PropTypes from "prop-types";
+import checkIcon from "./assets/check.png";
+import minusIcon from "./assets/minus.png";
 
-function Highlight({image, helperFnProduct, helperFnPrice, helperFnSizes, data}) {
+function Highlight({url, alt, helperFnProduct, helperFnPrice, helperFnSizes, data}) {
     return(
         <article className="highlight">
-            <p>{image}</p>
+            <img className={"product-image"} src={url} alt={alt}/>
             <div className="info-wrapper">
-                <p>{helperFnProduct && data ? helperFnProduct(data) : ""}</p>
-                <p>{helperFnPrice && data ? helperFnPrice(data) : ""}</p>
+                <p className={"product"}>{helperFnProduct && data ? helperFnProduct(data) : ""}</p>
+                <p className={"price"}>{helperFnPrice && data ? helperFnPrice(data) : ""}</p>
                 <p>{helperFnSizes && data ? helperFnSizes(data) : ""}</p>
+                <p>
+                    <img className={"icon"} src={checkIcon} alt={"check"}/>
+                    <span>wifi</span>
+                    <img className={"icon"} src={minusIcon} alt={"check"}/>
+                    <span>speech</span>
+                </p>
             </div>
         </article>
 
@@ -16,11 +24,12 @@ function Highlight({image, helperFnProduct, helperFnPrice, helperFnSizes, data})
 } 
 
 Highlight.propTypes = {
-    image: PropTypes.object.isRequired,
+    url: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
     helperFnProduct: PropTypes.func.isRequired,
     helperFnPrice: PropTypes.func.isRequired,
     helperFnSizes: PropTypes.func.isRequired,
-    data: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired,
 };
 
 export default Highlight;
