@@ -11,7 +11,8 @@ import Highlight from "./Highlight.jsx";
 import Button from "./Button.jsx";
 import showOutcomeInConsole from "./constants/showOutcomeInConsole.js";
 
-
+const allInventory = inventory.concat(bestSellingTv);
+const uniqueBrands = [...new Set(allInventory.map((product) => product.brand))];
 
 function App() {
     showOutcomeInConsole();
@@ -36,17 +37,26 @@ function App() {
                            helperFnPrice={createPriceBestsellingTv} helperFnSizes={createScreenSizesBestsellingTv}
                            data={bestSellingTv}/>
             </div>
-            <div>
-                <h2>Alle tvs</h2>
-                <div className={"button-wrapper"}>
-                    <Button title={"Meest verkocht eerst"} />
-                    <Button title={"Goedkoopste eerst"} />
-                    <Button title={"Meest geschikt voor sport eerst"} />
-                </div>
+            <h2>Alle merken</h2>
+            <ul>
+                {uniqueBrands.map((product, index) => (
+                    <li key={index}>{product}</li>
+                ))}
+            </ul>
+            <h2>Alle tvs</h2>
+            <div className={"button-wrapper"}>
+                <Button title={"Meest verkocht eerst"}/>
+                <Button title={"Goedkoopste eerst"}/>
+                <Button title={"Meest geschikt voor sport eerst"}/>
             </div>
+            {allInventory.map((product) => (
+                <Highlight variant="white" key={product.type} url={product.sourceImg} alt={"product image"}
+                           helperFnProduct={createNameBestsellingTv} helperFnPrice={createPriceBestsellingTv}
+                           helperFnSizes={createScreenSizesBestsellingTv} data={product}/>
+            ))}
         </>
 
-    )
+    );
 }
 
 export default App
