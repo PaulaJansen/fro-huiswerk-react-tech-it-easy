@@ -1,8 +1,8 @@
 import './Highlight.css';
 import PropTypes from "prop-types";
-import checkIcon from './assets/check.png';
-import minusIcon from './assets/minus.png';
-import soldIcon from './assets/out-of-stock.png';
+import checkIcon from '../assets/check.png';
+import minusIcon from '../assets/minus.png';
+import soldIcon from '../assets/out-of-stock.png';
 
 function Highlight({url, alt, helperFnProduct, helperFnPrice, helperFnSizes, data, variant}) {
     return (

@@ -1,14 +1,14 @@
 import './App.css';
 import {bestSellingTv, inventory} from './constants/inventory.js';
-import Card from './Card.jsx';
+import Card from './components/Card.jsx';
 import calculateProductsSold from './helpers/calculateProductsSold.js';
 import calculateProductsPurchased from './helpers/calculateProductsPurchased.js';
 import calculateProductsToSell from './helpers/calculateProductsToSell.js';
 import createNameBestsellingTv from './helpers/createNameBestsellingTv.js';
 import createPriceBestsellingTv from './helpers/createPriceBestsellingTv.js';
 import createScreenSizesBestsellingTv from "./helpers/createScreenSizesBestsellingTv.js";
-import Highlight from "./Highlight.jsx";
-import Button from "./Button.jsx";
+import Highlight from "./components/Highlight.jsx";
+import Button from "./components/Button.jsx";
 import showOutcomeInConsole from "./constants/showOutcomeInConsole.js";
 import React, {useState} from "react";
 
