@@ -1,0 +1,27 @@
+.card {
+    color: rgba(23, 133, 36, 1);
+    background-color: rgba(23, 133, 36, 0.1);
+    border: 2px solid rgba(23, 133, 36, 1);
+    border-radius: 5px;
+    padding: 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card p {
+    font-size: 1.7rem;
+}
+
+.card.blue {
+    color: rgba(77, 109, 161, 1);
+    background-color: rgba(77, 109, 161, 0.1);
+    border: 2px solid rgba(77, 109, 161, 1);
+}
+
+.card.red {
+    color: rgba(201, 56, 56, 1);
+    background-color: rgba(201, 56, 56, 0.1);
+    border: 2px solid rgba(201, 56, 56, 1);
+}

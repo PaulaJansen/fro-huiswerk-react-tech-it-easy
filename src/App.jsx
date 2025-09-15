@@ -1,9 +1,78 @@
 import './App.css';
+import {bestSellingTv, inventory} from './constants/inventory.js';
+import Card from './components/Card.jsx';
+import calculateProductsSold from './helpers/calculateProductsSold.js';
+import calculateProductsPurchased from './helpers/calculateProductsPurchased.js';
+import calculateProductsToSell from './helpers/calculateProductsToSell.js';
+import createNameBestsellingTv from './helpers/createNameBestsellingTv.js';
+import createPriceBestsellingTv from './helpers/createPriceBestsellingTv.js';
+import createScreenSizesBestsellingTv from "./helpers/createScreenSizesBestsellingTv.js";
+import Highlight from "./components/Highlight.jsx";
+import Button from "./components/Button.jsx";
+import showOutcomeInConsole from "./constants/showOutcomeInConsole.js";
+import React, {useState} from "react";
 
 function App() {
-  return (
-    <h1>Begin hier met met maken van de applicatie!</h1>
-  )
+    showOutcomeInConsole();
+
+    const allInventory = inventory.concat(bestSellingTv);
+    const uniqueBrands = [...new Set(allInventory.map((product) => product.brand))];
+    const [sortType, setSortType] = useState("meestVerkocht");
+    const sortedInventory = [...allInventory.sort((a, b) => {
+        if (sortType === "meestVerkocht") {
+            return b.sold - a.sold;
+        } else if (sortType === "goedkoopste") {
+            return a.price - b.price;
+        }else if (sortType === "meestGeschiktVoorSport") {
+            return b.refreshRate - a.refreshRate;
+        } else if (sortType === "schermgrootte"){
+            return Math.max(...b.availableSizes) - Math.max(...a.availableSizes);
+        } else {
+            return 0;
+        }
+    })];
+
+    return (
+        <>
+            <h1>Tech it easy dashboard</h1>
+            <div>
+                <h2>Verkoopoverzicht</h2>
+                <section className={"card-wrapper"}>
+                    <Card title="Aantal verkochte producten" helperFn={calculateProductsSold}
+                          data={bestSellingTv && inventory}/>
+                    <Card title="Aantal ingekochte producten" variant="blue" helperFn={calculateProductsPurchased}
+                          data={bestSellingTv && inventory}/>
+                    <Card title="Aantal te verkopen producten" variant="red" helperFn={calculateProductsToSell}
+                          data={bestSellingTv && inventory}/>
+                </section>
+            </div>
+            <div>
+                <h2>Best verkochte tv</h2>
+                <Highlight url={bestSellingTv.sourceImg} alt={"product image"} helperFnProduct={createNameBestsellingTv}
+                           helperFnPrice={createPriceBestsellingTv} helperFnSizes={createScreenSizesBestsellingTv}
+                           data={bestSellingTv}/>
+            </div>
+            <h2>Alle merken</h2>
+            <ul>
+                {uniqueBrands.map((product, index) => (
+                    <li key={index}>{product}</li>
+                ))}
+            </ul>
+            <h2>Alle tvs</h2>
+            <div className={"button-wrapper"}>
+                <Button title={"Meest verkocht eerst"} onClick={() => setSortType("meestVerkocht")} />
+                <Button title={"Goedkoopste eerst"} onClick={() => setSortType("goedkoopste")} />
+                <Button title={"Meest geschikt voor sport eerst"} onClick={() => setSortType("meestGeschiktVoorSport")} />
+                <Button title={"Grootste schermgrootte eerst"} onClick={() => setSortType("schermgrootte")} />
+            </div>
+            {sortedInventory.map((product) => (
+                <Highlight variant="white" key={product.type} url={product.sourceImg} alt={"product image"}
+                           helperFnProduct={createNameBestsellingTv} helperFnPrice={createPriceBestsellingTv}
+                           helperFnSizes={createScreenSizesBestsellingTv} data={product}/>
+            ))}
+        </>
+
+    );
 }
 
 export default App

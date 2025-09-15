@@ -1,0 +1,11 @@
+.card-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3rem;
+}
+
+.button-wrapper {
+    display: flex;
+    gap: 0.5rem;
+}

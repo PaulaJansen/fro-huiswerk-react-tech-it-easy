@@ -1,0 +1,41 @@
+.highlight {
+    display: flex;
+    gap: 2rem;
+    background-color: rgb(237, 235, 235);
+    border: 2px dashed rgb(0, 0, 0);
+    padding: 2rem;
+    width: 75%;
+}
+
+.product-image {
+    width: 30%;
+}
+
+.product {
+    font-size: 1.2rem;
+}
+
+.price {
+    font-size: 1.5rem;
+}
+
+.highlight.white {
+    background-color: rgb(255, 255, 255);
+    border: none;
+    padding: 3.5rem;
+}
+
+.options-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+}
+
+.list-icon {
+    width: 1rem;
+    height: 1rem;
+    padding: 0 0.3rem 0 0;
+
+}
