@@ -3,19 +3,33 @@ import {bestSellingTv, inventory} from './constants/inventory.js';
 import Card from './Card.jsx';
 import calculateProductsSold from './helpers/calculateProductsSold.js';
 import calculateProductsPurchased from './helpers/calculateProductsPurchased.js';
-import calculateProductsToSell from "./helpers/calculateProductsToSell.js";
+import calculateProductsToSell from './helpers/calculateProductsToSell.js';
 import createNameBestsellingTv from './helpers/createNameBestsellingTv.js';
 import createPriceBestsellingTv from './helpers/createPriceBestsellingTv.js';
 import createScreenSizesBestsellingTv from "./helpers/createScreenSizesBestsellingTv.js";
 import Highlight from "./Highlight.jsx";
 import Button from "./Button.jsx";
 import showOutcomeInConsole from "./constants/showOutcomeInConsole.js";
-
-const allInventory = inventory.concat(bestSellingTv);
-const uniqueBrands = [...new Set(allInventory.map((product) => product.brand))];
+import React, {useState} from "react";
 
 function App() {
     showOutcomeInConsole();
+
+    const allInventory = inventory.concat(bestSellingTv);
+    const uniqueBrands = [...new Set(allInventory.map((product) => product.brand))];
+    const [sortType, setSortType] = useState("meestVerkocht");
+    const sortedInventory = [...allInventory.sort((a, b) => {
+        if (sortType === "meestVerkocht") {
+            return b.sold - a.sold;
+        } else if (sortType === "goedkoopste") {
+            return a.price - b.price;
+        }else if (sortType === "meestGeschiktVoorSport") {
+            return b.refreshRate - a.refreshRate;
+        } else {
+            return 0;
+        }
+    })];
+
 
     return (
         <>
@@ -45,11 +59,11 @@ function App() {
             </ul>
             <h2>Alle tvs</h2>
             <div className={"button-wrapper"}>
-                <Button title={"Meest verkocht eerst"}/>
-                <Button title={"Goedkoopste eerst"}/>
-                <Button title={"Meest geschikt voor sport eerst"}/>
+                <Button title={"Meest verkocht eerst"} onClick={() => setSortType("meestVerkocht")} />
+                <Button title={"Goedkoopste eerst"} onClick={() => setSortType("goedkoopste")} />
+                <Button title={"Meest geschikt voor sport eerst"} onClick={() => setSortType("meestGeschiktVoorSport")} />
             </div>
-            {allInventory.map((product) => (
+            {sortedInventory.map((product) => (
                 <Highlight variant="white" key={product.type} url={product.sourceImg} alt={"product image"}
                            helperFnProduct={createNameBestsellingTv} helperFnPrice={createPriceBestsellingTv}
                            helperFnSizes={createScreenSizesBestsellingTv} data={product}/>

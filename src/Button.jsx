@@ -1,18 +1,19 @@
 import './Button.css';
 import PropTypes from "prop-types";
 
-function Button({title}) {
-    function logClick() {
-        console.log({title});
-    }
+function Button({title, onClick}) {
+    // function logClick() {
+    //     console.log({title});
+    // }
 
     return (
-       <button onClick={logClick} className={"button"}>{title}</button>
+       <button className={"button"} onClick={onClick}>{title}</button>
     )
 }
 
 Button.propTypes = {
     title: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
 }
 
 export default Button;
