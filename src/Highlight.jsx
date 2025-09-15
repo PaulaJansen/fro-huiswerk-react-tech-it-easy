@@ -2,11 +2,13 @@ import './Highlight.css';
 import PropTypes from "prop-types";
 import checkIcon from './assets/check.png';
 import minusIcon from './assets/minus.png';
+import soldIcon from './assets/out-of-stock.png';
 
 function Highlight({url, alt, helperFnProduct, helperFnPrice, helperFnSizes, data, variant}) {
     return (
         <article className={`highlight ${variant}`}>
-            <img className="product-image" src={url} alt={alt}/>
+            <img className="product-image" src={data.originalStock - data.sold > 0 ? url : soldIcon}
+                 alt={data.originalStock - data.sold > 0 ? alt : "out of stock"}/>
             <div className="info-wrapper">
                 <p className="product">{helperFnProduct && data ? helperFnProduct(data) : ""}</p>
                 <p className="price">{helperFnPrice && data ? helperFnPrice(data) : ""}</p>

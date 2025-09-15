@@ -25,11 +25,12 @@ function App() {
             return a.price - b.price;
         }else if (sortType === "meestGeschiktVoorSport") {
             return b.refreshRate - a.refreshRate;
+        } else if (sortType === "schermgrootte"){
+            return Math.max(...b.availableSizes) - Math.max(...a.availableSizes);
         } else {
             return 0;
         }
     })];
-
 
     return (
         <>
@@ -62,6 +63,7 @@ function App() {
                 <Button title={"Meest verkocht eerst"} onClick={() => setSortType("meestVerkocht")} />
                 <Button title={"Goedkoopste eerst"} onClick={() => setSortType("goedkoopste")} />
                 <Button title={"Meest geschikt voor sport eerst"} onClick={() => setSortType("meestGeschiktVoorSport")} />
+                <Button title={"Grootste schermgrootte eerst"} onClick={() => setSortType("schermgrootte")} />
             </div>
             {sortedInventory.map((product) => (
                 <Highlight variant="white" key={product.type} url={product.sourceImg} alt={"product image"}
